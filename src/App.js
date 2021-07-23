@@ -1,30 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
-font-size: 1em;
-margin: 1em;
-padding: 0.25em 1em;
-border-radius: 3px;
-color: palevioletred;
-border: 2px solid palevioletred;
-cursor: pointer;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  color: palevioletred;
+  border: 2px solid palevioletred;
+  cursor: pointer;
 `;
 const Input = styled.div`
-font-size: 1.5em
-
+  font-size: 1.5em
 `;
-const Container = styled.div`
-max-width: 200px;
-text-align: center;
-display: flex;
-flex-direction: row;
-justify-content: center;
-margin-top: 50px;
 
-`;
 function App() {
     const useFibon = () => {
       const [count, setCount] = useState(0);
