@@ -24,7 +24,7 @@ const Input = styled.div`
 
 const useFibonNum = () => {
   const [currNum, setCurrNum] = useState(0);
-  const [fibonNum, setFibonNum] = useState(1);
+  const [fibonNum, setFibonNum] = useState(0);
 
   const calcFibonNum = n => {
     let a = 1,
