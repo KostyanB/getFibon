@@ -2,32 +2,62 @@ import './App.css';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const color = 'palevioletred';
+
 const Button = styled.button`
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
   border-radius: 3px;
-  color: palevioletred;
-  border: 2px solid palevioletred;
+  color: ${color};
+  border: 2px solid ${color};
   cursor: pointer;
 `;
 const Input = styled.div`
-  font-size: 1.5em
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  color: ${color};
 `;
 
-function App() {
-    const useFibon = () => {
-      const [count, setCount] = useState(0);
-      const fib = n => (n <= 2 ? 1 : fib(n - 1) + fib(n - 2));
-      const fibNum = fib(count);
-      return { count, setCount, fibNum };
+const useFibonNum = () => {
+  const [currNum, setCurrNum] = useState(0);
+  const [fibonNum, setFibonNum] = useState(1);
+
+  const calcFibonNum = n => {
+    let a = 1,
+      b = 1;
+
+    for (let i = 3; i <= n; i++) {
+      [a, b] = [b, a + b];
     }
-    const { count, setCount, fibNum } = useFibon();
+    return b;
+  };
+
+  const setNewFibonNum = () => {
+    const newNum = currNum + 1;
+    setCurrNum(newNum);
+    setFibonNum(calcFibonNum(newNum));
+  };
+
+  return {
+    currNum,
+    fibonNum,
+    setNewFibonNum,
+  };
+};
+
+function App() {
+  const { currNum, fibonNum, setNewFibonNum } = useFibonNum();
 
   return (
     <div className="App">
-      <Input>Исходное: {count}, Число Фибоначчи: {fibNum}</Input>
-      <Button onClick={() => setCount(count + 1)}>Get Fibonacci Number</Button>
+      <Input>
+        Исходное: {currNum}, Число Фибоначчи: {fibonNum}
+      </Input>
+      <Button onClick={setNewFibonNum}>Get next FibonNumacci</Button>
     </div>
   );
 }
