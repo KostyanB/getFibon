@@ -1,8 +1,8 @@
-$color: palevioletred;
+$color: #d87093;
 $norm-font: 2.5rem;
 $big-font: 5rem;
 
-%flex-col {
+@mixin flex-col {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,4 +1,4 @@
-import './scss/style.scss';
+import './css/style.css';
 import React from 'react';
 import { FibonContextProvider } from './context';
 
@@ -8,7 +8,7 @@ import Header from './components/Header/Header';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='fibon'>
       <Header />
       <FibonContextProvider>
         <Input />
