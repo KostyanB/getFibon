@@ -1,7 +1,11 @@
-.App {
-  margin: 20px auto;
+$color: palevioletred;
+$norm-font: 2.5rem;
+$big-font: 5rem;
+
+%flex-col {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 4rem;
 }
