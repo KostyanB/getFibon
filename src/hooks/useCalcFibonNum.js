@@ -3,28 +3,61 @@ import calcFibon from '../helpers/calcFibon';
 
 const useCalcFibonNum = () => {
   const initFibon = '0',
-    initStatus = 'success';
+    initStatus = 'success',
+    initCash = {};
   const [fibonNum, setFibonNum] = useState(initFibon);
   const [status, setStatus] = useState(initStatus);
+  const [fibonCash, setFibonCash] = useState(initCash);
 
-  const calcFibonNum = useCallback(async dig => {
-    const input = parseInt(dig);
-    if (!input || input <= 0) {
-      setFibonNum(initFibon);
-      return;
-    }
+  const promiseCalcFibon = useCallback(
+    dig => new Promise(resolve => resolve(calcFibon(dig))),
+    [],
+  );
 
-    setStatus('calculate');
+  const updateCash = useCallback(
+    (input, result) => {
+      const newCash = {};
+      newCash[input] = result;
+      setFibonCash({ ...fibonCash, ...newCash });
+    },
+    [fibonCash],
+  );
 
-    const result = await calcFibon(input);
-    if (result) {
-      setStatus(initStatus);
-      setFibonNum(result);
-    }
-  }, []);
+  const calculate = useCallback(
+    input => {
+      setStatus('calculate');
+      (async () => {
+        const result = await promiseCalcFibon(input);
+
+        setFibonNum(result);
+        updateCash(input, result);
+        setStatus(initStatus);
+      })();
+    },
+    [updateCash, promiseCalcFibon],
+  );
+
+  const calcFibonNum = useCallback(
+    dig => {
+      const input = parseInt(dig);
+
+      if (!input || input <= 0) {
+        setFibonNum(initFibon);
+        return;
+      }
+
+      if (fibonCash[dig]) {
+        setFibonNum(fibonCash[dig]);
+      } else {
+        calculate(input);
+      }
+    },
+    [fibonCash, calculate],
+  );
 
   return {
     fibonNum,
+    fibonCash,
     calcFibonNum,
     status,
   };

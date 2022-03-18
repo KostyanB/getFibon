@@ -1,7 +1,7 @@
 import sumNumAsString from './sumNumAsString';
 
 const calcFibon = n => {
-  // if (n <= 0) return '0';
+  if (n <= 0) return '0';
 
   let a = '1',
     b = '1';
@@ -13,4 +13,5 @@ const calcFibon = n => {
 
   return b;
 };
+
 export default calcFibon;

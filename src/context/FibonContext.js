@@ -6,15 +6,16 @@ const FibonContext = createContext();
 export const useFibonContext = () => useContext(FibonContext);
 
 export const FibonContextProvider = props => {
-  const { fibonNum, calcFibonNum, status } = useCalcFibonNum();
+  const { fibonNum, fibonCash, calcFibonNum, status } = useCalcFibonNum();
 
   const value = useMemo(
     () => ({
       fibonNum,
+      fibonCash,
       calcFibonNum,
       status,
     }),
-    [fibonNum, calcFibonNum, status],
+    [fibonNum, fibonCash, calcFibonNum, status],
   );
 
   return (

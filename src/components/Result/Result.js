@@ -4,6 +4,7 @@ import Loader from '../Loader';
 
 const Result = () => {
   const { status, fibonNum } = useFibonContext();
+
   if (status === 'calculate') {
     return <Loader />;
   } else {
